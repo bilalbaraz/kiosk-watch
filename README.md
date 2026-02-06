@@ -1,6 +1,6 @@
 # 🕒 kiosk-watch — Full-screen kiosk clock
 
-![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/passgen)
+![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/kiosk-watch)
 
 A minimal desktop app that shows a full-screen digital clock and updates every second. Designed for always-on kiosk-style displays.
 
