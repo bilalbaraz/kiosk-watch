@@ -75,7 +75,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: kiosk-watch-macos
-          path: dist/kiosk-watch_darwin_amd64.zip
+          path: |
+            dist/kiosk-watch_darwin_amd64.zip
+            dist/kiosk-watch_darwin_app.zip
 
   release:
     if: startsWith(github.ref, 'refs/tags/')
