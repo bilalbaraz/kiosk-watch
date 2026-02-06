@@ -58,6 +58,11 @@ jobs:
         with:
           go-version-file: go.mod
 
+      - name: Install Fyne CLI
+        run: |
+          go install fyne.io/fyne/v2/cmd/fyne@latest
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+
       - name: Build
         run: |
           mkdir -p dist/darwin_amd64
