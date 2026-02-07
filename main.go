@@ -11,7 +11,7 @@ import (
 
 func main() {
 	a := app.New()
-	w := a.NewWindow("Kiosk Watch")
+	w := a.NewWindow("Kiosk Clock")
 
 	clock := canvas.NewText("", nil)
 	clock.Alignment = fyne.TextAlignCenter

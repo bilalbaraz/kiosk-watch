@@ -1,4 +1,4 @@
-module github.com/bilalbaraz/kiosk-watch
+module github.com/bilalbaraz/kiosk-clock
 
 go 1.25.6
 

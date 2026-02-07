@@ -34,16 +34,16 @@ jobs:
       - name: Build
         run: |
           mkdir -p dist
-          go build -o dist/kiosk-watch .
+          go build -o dist/kiosk-clock .
           mkdir -p dist/linux_amd64
-          GOOS=linux GOARCH=amd64 go build -o dist/linux_amd64/kiosk-watch .
-          (cd dist/linux_amd64 && zip -q ../kiosk-watch_linux_amd64.zip kiosk-watch)
+          GOOS=linux GOARCH=amd64 go build -o dist/linux_amd64/kiosk-clock .
+          (cd dist/linux_amd64 && zip -q ../kiosk-clock_linux_amd64.zip kiosk-clock)
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: kiosk-watch-linux
-          path: dist/kiosk-watch*
+          name: kiosk-clock-linux
+          path: dist/kiosk-clock*
 
   build-macos:
     runs-on: macos-latest
@@ -66,19 +66,19 @@ jobs:
       - name: Build
         run: |
           mkdir -p dist/darwin_amd64
-          go build -o dist/darwin_amd64/kiosk-watch .
-          GOOS=darwin GOARCH=amd64 fyne package -os darwin -icon kiosk-watch-icon.png -name kiosk-watch
-          cp -R kiosk-watch.app dist/
-          (cd dist && zip -q -r kiosk-watch_darwin_app.zip kiosk-watch.app)
-          (cd dist/darwin_amd64 && zip -q ../kiosk-watch_darwin_amd64.zip kiosk-watch)
+          go build -o dist/darwin_amd64/kiosk-clock .
+          GOOS=darwin GOARCH=amd64 fyne package -os darwin -icon app-icon.png -name kiosk-clock
+          cp -R kiosk-clock.app dist/
+          (cd dist && zip -q -r kiosk-clock_darwin_app.zip kiosk-clock.app)
+          (cd dist/darwin_amd64 && zip -q ../kiosk-clock_darwin_amd64.zip kiosk-clock)
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: kiosk-watch-macos
+          name: kiosk-clock-macos
           path: |
-            dist/kiosk-watch_darwin_amd64.zip
-            dist/kiosk-watch_darwin_app.zip
+            dist/kiosk-clock_darwin_amd64.zip
+            dist/kiosk-clock_darwin_app.zip
 
   release:
     if: startsWith(github.ref, 'refs/tags/')
@@ -102,7 +102,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/kiosk-watch
-            dist/kiosk-watch_linux_amd64.zip
-            dist/kiosk-watch_darwin_amd64.zip
-            dist/kiosk-watch_darwin_app.zip
+            dist/kiosk-clock
+            dist/kiosk-clock_linux_amd64.zip
+            dist/kiosk-clock_darwin_amd64.zip
+            dist/kiosk-clock_darwin_app.zip

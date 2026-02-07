@@ -1,6 +1,6 @@
-# 🕒 kiosk-watch — Full-screen kiosk clock
+# 🕒 kiosk-clock — Full-screen kiosk clock
 
-![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/kiosk-watch)
+![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/kiosk-clock)
 
 A minimal desktop app that shows a full-screen digital clock and updates every second. Designed for always-on kiosk-style displays.
 
@@ -19,7 +19,7 @@ go run .
 
 ## Build
 ```bash
-go build -o kiosk-watch .
+go build -o kiosk-clock .
 ```
 
 ## Notes
