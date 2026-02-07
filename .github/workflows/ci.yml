@@ -33,7 +33,7 @@ jobs:
 
       - name: Install Fyne CLI
         run: |
-          go install fyne.io/fyne/v2/cmd/fyne@latest
+          go install fyne.io/tools/cmd/fyne@latest
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
       - name: Build
@@ -43,7 +43,14 @@ jobs:
           mkdir -p dist/linux_amd64
           GOOS=linux GOARCH=amd64 go build -o dist/linux_amd64/kiosk-clock .
           GOOS=linux GOARCH=amd64 fyne package -release -os linux -icon app-icon.png -name kiosk-clock
-          mv kiosk-clock*.tar.gz dist/
+          shopt -s nullglob
+          files=(kiosk-clock*.tar.*)
+          if (( ${#files[@]} )); then
+            mv "${files[@]}" dist/
+          else
+            echo "No kiosk-clock tarball produced" >&2
+            exit 1
+          fi
           (cd dist/linux_amd64 && zip -q ../kiosk-clock_linux_amd64.zip kiosk-clock)
 
       - name: Upload artifact
@@ -67,7 +74,7 @@ jobs:
 
       - name: Install Fyne CLI
         run: |
-          go install fyne.io/fyne/v2/cmd/fyne@latest
+          go install fyne.io/tools/cmd/fyne@latest
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
       - name: Build
@@ -110,7 +117,7 @@ jobs:
         with:
           files: |
             dist/kiosk-clock
-            dist/kiosk-clock*.tar.gz
+            dist/kiosk-clock*.tar.*
             dist/kiosk-clock_linux_amd64.zip
             dist/kiosk-clock_darwin_amd64.zip
             dist/kiosk-clock_darwin_app.zip
